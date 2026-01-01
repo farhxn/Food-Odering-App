@@ -5,6 +5,7 @@ import CustomHeader from "@/components/CustomHeader";
 import cn from "clsx";
 import CustomButton from "@/components/CustomButton";
 import CartItem from "@/components/CartItem";
+import { PaymentInfoStripeProps } from '@/type';
 
 const PaymentInfoStripe = ({ label,  value,  labelStyle,  valueStyle, }: PaymentInfoStripeProps) => (
     <View className="flex-between flex-row my-1">
@@ -25,7 +26,7 @@ const Cart = () => {
 
     return (
         <SafeAreaView className="bg-white h-full">
-            {/* <FlatList
+            <FlatList
                 data={items}
                 renderItem={({ item }) => <CartItem item={item} />}
                 keyExtractor={(item) => item.id}
@@ -64,7 +65,7 @@ const Cart = () => {
                         <CustomButton title="Order Now" />
                     </View>
                 )}
-            /> */}
+            />
         </SafeAreaView>
     )
 }

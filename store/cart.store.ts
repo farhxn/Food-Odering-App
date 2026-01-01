@@ -89,7 +89,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
                 item.customizations?.reduce(
                     (s: number, c: CartCustomization) => s + c.price,
                     0
-                ) ?? 0;
+                ) ?? 0; 
             return total + item.quantity * (base + customPrice);
         }, 0),
 }));

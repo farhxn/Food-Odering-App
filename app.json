@@ -7,11 +7,12 @@
     "icon": "./assets/images/icon.png",
     "scheme": "foodapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.farhan.foodApp",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -47,11 +48,18 @@
           "project": "react-native",
           "organization": "farhxn"
         }
-      ]
+      ],
+      "@sentry/react-native"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "a7257e6b-84d3-4441-8338-01301c36578c"
+      }
     }
   }
 }
