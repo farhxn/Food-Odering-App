@@ -1,9 +1,10 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
+import { Button, FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { Fragment } from "react";
 import cn from 'clsx';
 import { images, offers } from "@/constants";
 import CartButton from "@/components/CartButton";
+import * as Sentry from '@sentry/react-native'
 
 export default function Index() {
 
@@ -54,7 +55,7 @@ export default function Index() {
                 <Image source={images.arrowDown} className="size-3" resizeMode="contain" />
               </TouchableOpacity>
             </View>
-                      <CartButton />
+            <CartButton />
           </View>
         )}
       />

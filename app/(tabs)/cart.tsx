@@ -1,6 +1,6 @@
 import {View, Text, FlatList} from 'react-native'
 import {SafeAreaView} from "react-native-safe-area-context";
-// import {useCartStore} from "@/store/cart.store";
+import {useCartStore} from "@/store/cart.store";
 import CustomHeader from "@/components/CustomHeader";
 import cn from "clsx";
 import CustomButton from "@/components/CustomButton";
