@@ -26,6 +26,7 @@ export const databases = new Databases(client);
 export const storage = new Storage(client);
 const avatars = new Avatars(client);
 
+
 export const createUser = async ({ email, password, name }: CreateUserParams) => {
     try {
         const newAccount = await account.create(ID.unique(), email, password, name)
@@ -54,6 +55,17 @@ export const signIn = async ({ email, password }: SignInParams) => {
         throw new Error(e as string);
     }
 }
+
+
+export const signOut = async () => {
+    try {
+        const session = await account.deleteSession('current');
+        return session;
+    } catch (e) {
+        throw new Error(e as string);
+    }
+}
+
 
 export const getCurrentUser = async () => {
     try {
@@ -102,6 +114,20 @@ export const getCategories = async () => {
         )
 
         return categories.documents;
+    } catch (e) {
+        throw new Error(e as string);
+    }
+}
+
+
+export const getCustomizations = async () => {
+    try {
+        const customizations = await databases.listDocuments(
+            appwriteConfig.databaseId,
+            appwriteConfig.customizationsCollectionId,
+        )
+
+        return customizations.documents;
     } catch (e) {
         throw new Error(e as string);
     }

@@ -1,7 +1,7 @@
+import { images } from "@/constants";
 import { useCartStore } from "@/store/cart.store";
 import { CartItemType } from "@/type";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import {images} from "@/constants";
 
 const CartItem = ({ item }: { item: CartItemType }) => {
     const { increaseQty, decreaseQty, removeItem } = useCartStore();
@@ -20,8 +20,19 @@ const CartItem = ({ item }: { item: CartItemType }) => {
                 <View>
                     <Text className="base-bold text-dark-100">{item.name}</Text>
                     <Text className="paragraph-bold text-primary mt-1">
-                        ${item.price}
+                        Rs. {item.price}
                     </Text>
+
+                    {/* Customizations */}
+                    {item.customizations && item.customizations.length > 0 && (
+                        <View className="mt-2">
+                            {item.customizations.map((c: any, index: number) => (
+                                <Text key={index} className="text-xs text-gray-500">
+                                    • {c.name} (+Rs. {c.price})
+                                </Text>
+                            ))}
+                        </View>
+                    )}
 
                     <View className="flex flex-row items-center gap-x-4 mt-2">
                         <TouchableOpacity

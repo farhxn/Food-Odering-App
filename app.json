@@ -7,9 +7,10 @@
     "icon": "./assets/images/icon.png",
     "scheme": "foodapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "merchantId": "merchant.com.foodapp"
     },
     "android": {
       "package": "com.farhan.foodApp",
@@ -49,7 +50,14 @@
           "organization": "farhxn"
         }
       ],
-      "@sentry/react-native"
+      "@sentry/react-native",
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "merchant.com.foodapp",
+          "enableGooglePay": false
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

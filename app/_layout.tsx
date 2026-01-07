@@ -1,9 +1,10 @@
-import { SplashScreen, Stack } from "expo-router";
-import "./global.css";
-import { useFonts } from 'expo-font';
-import { useEffect } from "react";
-import * as Sentry from '@sentry/react-native';
 import useAuthStore from "@/store/auth.store";
+import * as Sentry from '@sentry/react-native';
+import { StripeProvider } from '@stripe/stripe-react-native';
+import { useFonts } from 'expo-font';
+import { SplashScreen, Stack } from "expo-router";
+import { useEffect } from "react";
+import "./global.css";
 
 Sentry.init({
   dsn: 'https://70f4f85e742c1418c0bc0acf8e75e991@o4510630066651136.ingest.us.sentry.io/4510630068355072',
@@ -26,11 +27,11 @@ Sentry.init({
 
 export default Sentry.wrap(function RootLayout() {
 
-    const { isLoading, fetchAuthenticatedUser } = useAuthStore();
+  const { isLoading, fetchAuthenticatedUser } = useAuthStore();
 
-    useEffect(() => {
-        fetchAuthenticatedUser();
-    }, []);
+  useEffect(() => {
+    fetchAuthenticatedUser();
+  }, []);
 
   const [fontsLoaded, error] = useFonts({
     "QuickSand-Bold": require('../assets/fonts/Quicksand-Bold.ttf'),
@@ -45,7 +46,14 @@ export default Sentry.wrap(function RootLayout() {
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded, error]);
 
-      if(!fontsLoaded || isLoading) return null;
+  if (!fontsLoaded || isLoading) return null;
 
-      return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <StripeProvider
+      publishableKey={process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''}
+      merchantIdentifier="merchant.com.foodapp" // Required for Apple Pay
+    >
+      <Stack screenOptions={{ headerShown: false }} />
+    </StripeProvider>
+  );
 });

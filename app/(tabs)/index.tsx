@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import cn from 'clsx';
 import { images, offers } from "@/constants";
 import CartButton from "@/components/CartButton";
-import * as Sentry from '@sentry/react-native'
+import { router } from "expo-router";
 
 export default function Index() {
 
@@ -21,6 +21,7 @@ export default function Index() {
                 className={cn("offer-card", isEven ? 'flex-row-reverse' : 'flex-row')}
                 style={{ backgroundColor: item.color }}
                 android_ripple={{ color: "#fffff22" }}
+                onPress={() => {router.push("/(tabs)/search")}}
               >
                 {({ pressed }) => (
                   <Fragment>
